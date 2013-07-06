@@ -35,4 +35,9 @@ WITH SYNTAX {
 }
 Criticality		::= ENUMERATED { reject, ignore, notify }
 
+InitiatingMessage ::= SEQUENCE {
+--        procedureCode   S1AP-ELEMENTARY-PROCEDURE.&procedureCode        ({S1AP-ELEMENTARY-PROCEDURES})
+        procedureCode   S1AP-ELEMENTARY-PROCEDURE.&procedureCode
+}
+
 END

@@ -186,6 +186,7 @@ BuiltinType =
      |   NullType
      (* |   InstanceOfType
         |    ObjectClassFieldType -- These both come from ITU-T Rec. X.681 | ISO/IEC 8824-2, 14.1 and Annex C. *)
+     |   ObjectClassFieldType
      |   ObjectIdentifierType
      |   OctetStringType
      |   RealType
@@ -306,6 +307,10 @@ EnumerationItem = identifier | NamedNumber;
 EnumeratedValue = identifier;
 
 XMLEnumeratedValue = "<", identifier, "/>";
+
+ObjectClassFieldType = DefinedObjectClass, ".", FieldName;
+FieldName = typefieldreference;
+DefinedObjectClass = typereference;
 
 RealType = "REAL";
 
