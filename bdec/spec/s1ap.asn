@@ -22,7 +22,8 @@ S1AP-PDU ::= CHOICE {
 S1AP-ELEMENTARY-PROCEDURE ::= CLASS {
 	&InitiatingMessage				,
 	&SuccessfulOutcome				OPTIONAL,
-	&UnsuccessfulOutcome				OPTIONAL, 	
+	&UnsuccessfulOutcome				OPTIONAL,
+	&procedureCode			ProcedureCode 	UNIQUE,	
  	&criticality			Criticality 	DEFAULT ignore
 }
 
