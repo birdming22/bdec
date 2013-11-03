@@ -336,6 +336,7 @@ def load_ebnf():
             'typereference' : Word(alphanums + '-'),
             'objectclassreference' : Word(alphanums + '-'),
             'typefieldreference' : Combine("&" + Word(alphanums + '-')),
+            'valuefieldreference' : Combine("&" + Word(alphanums + '-')),
             'modulereference' : Word(alphanums + '-'),
             'realnumber' : Combine(Word(nums) + Optional('.' + Word(nums)) + Optional(oneOf('eE') + Word(nums))),
             'empty' : empty,

@@ -228,7 +228,6 @@ class _Loader:
                 'xmlhstring' : Word('abcdef' + nums),
                 'number' : Word(nums),
                 'typereference' : Word(alphanums + '-'),
-                'typefieldreference' : Combine("&" + Word(alphanums + '-')),
                 'modulereference' : Word(alphanums + '-'),
                 'realnumber' : Combine(Word(nums) + Optional('.' + Word(nums)) + Optional(oneOf('eE') + Word(nums))),
                 'empty' : empty,

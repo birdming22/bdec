@@ -143,9 +143,9 @@ ObjectClassDefn = "CLASS", "{", FieldSpecList, "}";
 FieldSpecList = FieldSpec, {",", FieldSpec};
 
 FieldSpec =
-         TypeFieldSpec;
-     (*|   FixedTypeValueFieldSpec
-     |   VariableTypeValueFieldSpec
+         TypeFieldSpec
+     |   FixedTypeValueFieldSpec;
+     (*|   VariableTypeValueFieldSpec
      |   FixedTypeValueSetFieldSpec
      |   VariableTypeValueSetFieldSpec
      |   ObjectFieldSpec
@@ -153,8 +153,9 @@ FieldSpec =
 
 TypeFieldSpec = typefieldreference, TypeOptionalitySpec;
 
-(* TypeOptionalitySpec = empty | "OPTIONAL" | "DEFAULT", {Type}; *)
-TypeOptionalitySpec = empty | "OPTIONAL" | "DEFAULT";
+FixedTypeValueFieldSpec = valuefieldreference, Type, TypeOptionalitySpec;
+
+TypeOptionalitySpec = empty | "OPTIONAL" | "DEFAULT", {Type};
 
 WithSyntaxSpec = empty;
 

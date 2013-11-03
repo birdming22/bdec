@@ -22,8 +22,10 @@ S1AP-PDU ::= CHOICE {
 S1AP-ELEMENTARY-PROCEDURE ::= CLASS {
 	&InitiatingMessage				,
 	&SuccessfulOutcome				OPTIONAL,
- 	&UnsuccessfulOutcome				OPTIONAL
+	&UnsuccessfulOutcome				OPTIONAL, 	
+ 	&criticality			Criticality 	DEFAULT ignore
 }
 
+Criticality		::= ENUMERATED { reject, ignore, notify }
 
 END
