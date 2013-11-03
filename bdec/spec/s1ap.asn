@@ -1,0 +1,29 @@
+S1AP-PDU-Descriptions  { itu-t (0) }
+
+DEFINITIONS AUTOMATIC TAGS ::= 
+
+BEGIN
+
+IMPORTS
+	Criticality,
+	ProcedureCode
+FROM S1AP-CommonDataTypes;
+
+E-RABDataForwardingItem ::= SEQUENCE {
+	e-RAB-ID							E-RAB-ID
+}
+S1AP-PDU ::= CHOICE {
+	initiatingMessage	InitiatingMessage,
+	successfulOutcome	SuccessfulOutcome,
+	unsuccessfulOutcome	UnsuccessfulOutcome,
+	...
+}
+
+S1AP-ELEMENTARY-PROCEDURE ::= CLASS {
+	&InitiatingMessage				,
+	&SuccessfulOutcome				OPTIONAL,
+ 	&UnsuccessfulOutcome				OPTIONAL
+}
+
+
+END

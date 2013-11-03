@@ -77,6 +77,7 @@ Assignment =
     |    ValueAssignment
     |    XMLValueAssignment
     |    ValueSetTypeAssignment
+    |    ObjectClassAssignment
     (* |    ObjectClassAssignment -- See ITU-T Rec. X.681 | ISO/IEC 8824-2, 9.1 *)
     (* |    ObjectAssignment -- ITU-T Rec. X.681 | ISO/IEC 8824-2, 11.1 *)
     (* |    ObjectSetAssignment -- ITU-T Rec. X.681 | ISO/IEC 8824-2, 12.1 *)
@@ -127,6 +128,35 @@ XMLTypedValue =
      |   "<", NonParameterizedTypeName, "/>";
 
 ValueSetTypeAssignment = typereference, Type, "::=", ValueSet;
+
+ObjectClassAssignment = objectclassreference, "::=", ObjectClass;
+
+ObjectClass = 
+         ObjectClassDefn;
+     (*    ObjectClass
+     |    ObjectClassDefn;
+     | ParameterizedObjectClass -- ITU-T Rec. X.683 | ISO/IEC 8824-4, 9.2 *)
+
+(* ObjectClassDefn = "CLASS", "{", FieldSpecList, "}", WithSyntaxSpec; *)
+ObjectClassDefn = "CLASS", "{", FieldSpecList, "}";
+
+FieldSpecList = FieldSpec, {",", FieldSpec};
+
+FieldSpec =
+         TypeFieldSpec;
+     (*|   FixedTypeValueFieldSpec
+     |   VariableTypeValueFieldSpec
+     |   FixedTypeValueSetFieldSpec
+     |   VariableTypeValueSetFieldSpec
+     |   ObjectFieldSpec
+     |   OjbectSetFieldSpec;*)
+
+TypeFieldSpec = typefieldreference, TypeOptionalitySpec;
+
+(* TypeOptionalitySpec = empty | "OPTIONAL" | "DEFAULT", {Type}; *)
+TypeOptionalitySpec = empty | "OPTIONAL" | "DEFAULT";
+
+WithSyntaxSpec = empty;
 
 ValueSet = "{", ElementSetSpecs, "}";
 
