@@ -54,7 +54,7 @@ from bdec.spec.ebnf import parse
 import os.path
 from pyparsing import Word, nums, alphanums, StringEnd, \
     ParseException, Optional, Combine, oneOf, alphas,\
-    QuotedString, empty, lineno, SkipTo, ParserElement
+    QuotedString, empty, lineno, SkipTo, ParserElement, White
 #import sys
 #sys.setrecursionlimit(1500)
 
@@ -337,6 +337,7 @@ def load_ebnf():
             'objectclassreference' : Word(alphanums + '-'),
             'typefieldreference' : Combine("&" + Word(alphanums + '-')),
             'valuefieldreference' : Combine("&" + Word(alphanums + '-')),
+            'literal' : Word(alphanums) + Optional(White(' ',exact=1) + Word(alphanums)),
             'modulereference' : Word(alphanums + '-'),
             'realnumber' : Combine(Word(nums) + Optional('.' + Word(nums)) + Optional(oneOf('eE') + Word(nums))),
             'empty' : empty,

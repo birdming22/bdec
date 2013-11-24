@@ -137,8 +137,7 @@ ObjectClass =
      |    ObjectClassDefn;
      | ParameterizedObjectClass -- ITU-T Rec. X.683 | ISO/IEC 8824-4, 9.2 *)
 
-(* ObjectClassDefn = "CLASS", "{", FieldSpecList, "}", WithSyntaxSpec; *)
-ObjectClassDefn = "CLASS", "{", FieldSpecList, "}";
+ObjectClassDefn = "CLASS", "{", FieldSpecList, "}", WithSyntaxSpec;
 
 FieldSpecList = FieldSpec, {",", FieldSpec};
 
@@ -157,7 +156,17 @@ TypeOptionalitySpec = empty | "OPTIONAL" | "DEFAULT", {Type};
 FixedTypeValueFieldSpec = valuefieldreference, Type, {"UNIQUE"}, ValueOptionalitySpec;
 ValueOptionalitySpec = empty | "OPTIONAL" | "DEFAULT", {Type};
 
-WithSyntaxSpec = empty;
+WithSyntaxSpec = "WITH SYNTAX", SyntaxList;
+
+SyntaxList = "{", TokenOrGroupSpecList, "}";
+
+TokenOrGroupSpecList = TokenOrGroupSpec, {TokenOrGroupSpec};
+
+TokenOrGroupSpec = RequiredToken | OptionalGroup;
+
+RequiredToken = literal, FieldSpec;
+
+OptionalGroup = '[', RequiredToken, ']';
 
 ValueSet = "{", ElementSetSpecs, "}";
 
