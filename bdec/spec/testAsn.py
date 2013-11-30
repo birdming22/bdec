@@ -55,7 +55,7 @@ import os.path
 from pyparsing import Word, nums, alphanums, StringEnd, \
     ParseException, Optional, Combine, oneOf, alphas,\
     QuotedString, empty, lineno, SkipTo, ParserElement, White
-#import sys
+import sys
 #sys.setrecursionlimit(1500)
 
 class Asn1Error(LoadError):
@@ -326,7 +326,7 @@ def load(filename, specfile, references):
     text = specfile.read()
     return loads(text, filename, references)
 
-def load_ebnf():
+def load_ebnf(testCase):
     table = {
             'bstring' : Combine("'" + Word('01') + "'B"),
             'xmlbstring' : Word('01'),
@@ -354,8 +354,12 @@ def load_ebnf():
         parsers[name].setDebug(flag=True)
     parser = parsers['ModuleDefinition'] + StringEnd()
     parser.ignore('--' + SkipTo('\n'))
-    a = parser.parseString(open('s1ap.asn', 'r').read())[0]
+    a = parser.parseString(open(testCase, 'r').read())[0]
 
     return parser, dict((name, entry) for name, entry in parsers.items() if name not in table)
 
-load_ebnf()
+if len(sys.argv) == 2:
+    load_ebnf(sys.argv[1])
+else:
+    print 'usage: python testAsn.py s1ap/sequence_01.asn'
+
