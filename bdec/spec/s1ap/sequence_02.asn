@@ -1,0 +1,16 @@
+S1AP-PDU-Descriptions  { itu-t (0) }
+
+DEFINITIONS AUTOMATIC TAGS ::= 
+
+BEGIN
+
+IMPORTS
+	Criticality,
+	ProcedureCode
+FROM S1AP-CommonDataTypes;
+
+InitiatingMessage ::= SEQUENCE {
+        procedureCode   S1AP-ELEMENTARY-PROCEDURE.&procedureCode        ({S1AP-ELEMENTARY-PROCEDURES})
+}
+
+END
